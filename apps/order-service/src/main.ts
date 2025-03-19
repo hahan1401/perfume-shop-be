@@ -1,8 +1,18 @@
 import { NestFactory } from '@nestjs/core';
-import { OrderServiceModule } from './order-service.module';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(OrderServiceModule);
-  await app.listen(process.env.port ?? 3000);
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+    AppModule,
+    {
+      transport: Transport.TCP,
+      options: {
+        port: 4002,
+        host: process.env.HOST,
+      },
+    },
+  );
+  await app.listen();
 }
 bootstrap();

@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
+import { Pagination } from '@shared/common/Pagination';
 import { isNil } from 'lodash';
-import { Pagination } from '../common/Pagination';
 
 @Injectable()
 export class PaginationParseIntPipe implements PipeTransform {

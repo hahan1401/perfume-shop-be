@@ -1,0 +1,39 @@
+version: "1.2"
+
+services:
+  product-service:
+    build:
+      context: ./apps/product-service
+      dockerfile: ./Dockerfile
+    image: product-service
+    container_name: product-service
+    ports:
+      - "4001:4001"
+    networks:
+      - my_network
+
+  payment-service:
+    build:
+      context: ./apps/payment-service
+      dockerfile: ./Dockerfile
+    image: payment-service
+    container_name: payment-service
+    ports:
+      - "4002:4002"
+    networks:
+      - my_network
+
+  api-gateway:
+    build:
+      context: ./apps/api-gateway
+      dockerfile: ./Dockerfile
+    image: api-gateway
+    container_name: api-gateway
+    ports:
+      - "4000:4000"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge

@@ -11,6 +11,7 @@ import { HttpExceptionFilter } from './exceptions/http-exception';
 import { FilesModule } from './files/files.module';
 import { ReponseInterceptor } from './interceptors/reponse.interceptor';
 import { PerfumesModule } from './perfume/perfume.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
@@ -18,6 +19,10 @@ import { PerfumesModule } from './perfume/perfume.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..'),
     }),
+    ConfigModule.forRoot({envFilePath: '.env'}),
+    // MongooseModule.forRoot(
+    //   'mongodb+srv://hanvietha141:hanvietha141@express-nextjs.2aezl0o.mongodb.net/perfume_shop?retryWrites=true&w=majority&appName=express-nextjs',
+    // ),
     MongooseModule.forRoot('mongodb://localhost:27017/perfume_shop'),
     FilesModule,
     PerfumesModule,

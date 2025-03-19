@@ -10,6 +10,15 @@
   "monorepo": true,
   "root": "apps/perfume_shop",
   "projects": {
+    "api-gateway": {
+      "type": "application",
+      "root": "apps/api-gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
+      }
+    },
     "order-service": {
       "type": "application",
       "root": "apps/order-service",
@@ -19,13 +28,13 @@
         "tsConfigPath": "apps/order-service/tsconfig.app.json"
       }
     },
-    "products": {
+    "product-service": {
       "type": "application",
-      "root": "apps/products",
+      "root": "apps/product-service",
       "entryFile": "main",
-      "sourceRoot": "apps/products/src",
+      "sourceRoot": "apps/product-service/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/products/tsconfig.app.json"
+        "tsConfigPath": "apps/product-service/tsconfig.app.json"
       }
     }
   }
