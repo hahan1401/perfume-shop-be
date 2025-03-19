@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ProductGatewayModule } from '../product.gateway/product.gateway.module';
+import { ProductGatewayController } from './product.gateway.controller';
 
 @Module({
   imports: [
@@ -13,9 +11,8 @@ import { ProductGatewayModule } from '../product.gateway/product.gateway.module'
         options: { port: 4001 },
       },
     ]),
-    ProductGatewayModule
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  providers: [],
+  controllers: [ProductGatewayController],
 })
-export class AppModule {}
+export class ProductGatewayModule {}

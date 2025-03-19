@@ -3,36 +3,38 @@ import { PerfumesService } from './perfume.service';
 import { Perfume } from './schemas/perfume.schema';
 import { Pagination } from '@shared/common/Pagination';
 import { PaginationParseIntPipe } from '@shared/pipes/PaginationParseIntPipe.pipe';
+import { MessagePattern } from '@nestjs/microservices';
 
 @Controller('perfumes')
 export class PerfumesController {
   constructor(private readonly perfumeService: PerfumesService) {}
 
-  @Get('/')
-  async getAll(
-    @Query(PaginationParseIntPipe) pagination?: Pagination,
-    @Query('categoryId')
-    categoryId?: string,
-  ) {
+  @MessagePattern('productService.perfumes.getAll')
+  async getAll({
+    pagination,
+    categoryId,
+  }: {
+    categoryId?: string;
+    pagination?: Pagination;
+  }) {
     return this.perfumeService.getAll({
       categoryId,
       pagination: pagination,
     });
   }
 
-  @Post('/')
-  async create(@Body() perfume: Perfume) {
+  @MessagePattern('productService.perfumes.create')
+  async create({ perfume }: { perfume: Perfume }) {
     return this.perfumeService.create(perfume);
   }
 
-  @Put(':id')
-  async update(@Param('id') id: string, @Body() perfume: Perfume) {
-    console.log('id', id);
+  @MessagePattern('productService.perfumes.update')
+  async update({id, perfume}: {id: string, perfume: Perfume}) {
     return this.perfumeService.update(id, perfume);
   }
 
-  @Post('/delete')
-  async softDelete(@Body('ids') ids: string[]) {
+  @MessagePattern('productService.perfumes.delete')
+  async softDelete({ids}: {ids: string[]}) {
     return this.perfumeService.softDelete(ids);
   }
 }
