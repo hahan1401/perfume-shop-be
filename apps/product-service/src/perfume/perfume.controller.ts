@@ -1,9 +1,8 @@
-import { Body, Controller, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
+import { MessagePattern } from '@nestjs/microservices';
+import { Pagination } from '@shared/common/Pagination';
 import { PerfumesService } from './perfume.service';
 import { Perfume } from './schemas/perfume.schema';
-import { Pagination } from '@shared/common/Pagination';
-import { PaginationParseIntPipe } from '@shared/pipes/PaginationParseIntPipe.pipe';
-import { MessagePattern } from '@nestjs/microservices';
 
 @Controller('perfumes')
 export class PerfumesController {
@@ -29,12 +28,12 @@ export class PerfumesController {
   }
 
   @MessagePattern('productService.perfumes.update')
-  async update({id, perfume}: {id: string, perfume: Perfume}) {
+  async update({ id, perfume }: { id: string; perfume: Perfume }) {
     return this.perfumeService.update(id, perfume);
   }
 
   @MessagePattern('productService.perfumes.delete')
-  async softDelete({ids}: {ids: string[]}) {
+  async softDelete({ ids }: { ids: string[] }) {
     return this.perfumeService.softDelete(ids);
   }
 }
