@@ -20,7 +20,10 @@
     "test:e2e": "jest --config ./apps/perfume_shop/test/jest-e2e.json",
     "start:gateway": "nest start api-gateway --watch",
     "start:product": "nest start product-service --watch",
-    "start:order": "nest start order-service --watch"
+    "start:order": "nest start order-service --watch",
+    "build:gateway": "nest build api-gateway",
+    "build:product": "nest build product-service",
+    "build:order": "nest build order-service"
   },
   "dependencies": {
     "@nestjs/axios": "^4.0.0",

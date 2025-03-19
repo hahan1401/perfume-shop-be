@@ -5,11 +5,11 @@ RUN apk --no-cache add curl
 FROM base AS builder
 WORKDIR /app
 COPY . .
-RUN npm run build
+RUN npm run build:order
 
 FROM base AS runner
 WORKDIR /app
-COPY --from=builder /app/dist ./
+COPY --from=builder /app/dist/apps/order-service ./
 COPY --from=builder /app/node_modules ./node_modules
 EXPOSE 4002
 CMD ["node", "main.js"]
