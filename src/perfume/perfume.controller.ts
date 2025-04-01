@@ -33,6 +33,13 @@ export class PerfumesController {
     });
   }
 
+  @Public()
+  @Get('/:name')
+  async getOneByName(@Param('name') name: string) {
+    const data = await this.perfumeService.findOneByName(name);
+    return new ResponseDTO(data);
+  }
+
   @Post('/')
   async create(@Body() perfume: PerfumeCreateDto): Promise<ResponseDTO<PerufmeReponseDTO | null>> {
     const data = await this.perfumeService.create(perfume);
@@ -40,7 +47,10 @@ export class PerfumesController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() perfume: PerfumeCreateDto): Promise<ResponseDTO<PerufmeReponseDTO | null>> {
+  async update(
+    @Param('id') id: string,
+    @Body() perfume: PerfumeCreateDto,
+  ): Promise<ResponseDTO<PerufmeReponseDTO | null>> {
     const data = await this.perfumeService.update(id, perfume);
     return new ResponseDTO(data);
   }

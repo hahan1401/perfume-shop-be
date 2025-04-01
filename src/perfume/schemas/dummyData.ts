@@ -13,7 +13,11 @@ export const generateDummyData = async (
   {
     name: 'Rose Delight',
     description: 'A delightful floral fragrance.',
-    price: 50,
+    prices: [
+      { price: 450000, volume: '10ml' },
+      { price: 880000, volume: '20ml' },
+      { price: 3950000, volume: '100ml' },
+    ],
     categoryIds: await Promise.all([
       categoryService.getByName(CATEGORIES_DUMMY[0].name).then((resp) => resp?._id),
       categoryService.getByName(CATEGORIES_DUMMY[1].name).then((resp) => resp?._id),
@@ -27,7 +31,11 @@ export const generateDummyData = async (
   {
     name: 'Forest Whisper',
     description: 'A deep woody scent.',
-    price: 70,
+    prices: [
+      { price: 450000, volume: '10ml' },
+      { price: 880000, volume: '20ml' },
+      { price: 3950000, volume: '100ml' },
+    ],
     categoryIds: await Promise.all([
       categoryService.getByName(CATEGORIES_DUMMY[1].name).then((resp) => resp?._id),
       categoryService.getByName(CATEGORIES_DUMMY[2].name).then((resp) => resp?._id),
@@ -41,7 +49,11 @@ export const generateDummyData = async (
   {
     name: 'Citrus Burst',
     description: 'A refreshing citrus aroma.',
-    price: 60,
+    prices: [
+      { price: 450000, volume: '10ml' },
+      { price: 880000, volume: '20ml' },
+      { price: 3950000, volume: '100ml' },
+    ],
     categoryIds: await Promise.all([
       categoryService.getByName(CATEGORIES_DUMMY[0].name).then((resp) => resp?._id),
       categoryService.getByName(CATEGORIES_DUMMY[2].name).then((resp) => resp?._id),
