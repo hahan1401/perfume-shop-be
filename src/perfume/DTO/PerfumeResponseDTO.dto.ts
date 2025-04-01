@@ -1,8 +1,10 @@
+import { IPrices } from 'src/types/common';
+
 export class PerufmeReponseDTO {
   public _id: string;
   public name: string;
   public description: string;
-  public price: number;
+  public prices: IPrices[];
   public categories: string[];
   public brand: string;
   public imageUrl: string;
@@ -17,7 +19,7 @@ export class PerufmeReponseDTO {
     this._id = perfumeDocument._id;
     this.name = perfumeDocument.name;
     this.description = perfumeDocument.description;
-    this.price = perfumeDocument.price;
+    this.prices = perfumeDocument.prices;
     this.categories = perfumeDocument.categories;
     this.brand = perfumeDocument.brand;
     this.imageUrl = perfumeDocument.imageUrl;

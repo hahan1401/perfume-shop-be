@@ -51,6 +51,15 @@ export class PerfumesService implements OnModuleInit {
     return this.PerfumePopulatedToDto(data);
   }
 
+  async findOneByName(name: string): Promise<PerufmeReponseDTO | null> {
+    const data = await this.perfumeModel
+      .findOne({ name: name })
+      .populate(PerfumePopulateKeys.brandId, 'name')
+      .populate(PerfumePopulateKeys.collectionId, 'name')
+      .exec();
+    return this.PerfumePopulatedToDto(data);
+  }
+
   async getAll({
     pagination,
     filter,
@@ -247,7 +256,7 @@ export class PerfumesService implements OnModuleInit {
       _id: perfume._id.toString(),
       name: perfume.name,
       description: perfume.description,
-      price: perfume.price,
+      prices: perfume.prices,
       categories: Array.isArray(perfume.categoryIds)
         ? perfume.categoryIds.map((category) => ('name' in category ? (category.name as string) : ''))
         : [],

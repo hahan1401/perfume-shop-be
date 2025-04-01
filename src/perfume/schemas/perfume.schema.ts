@@ -3,6 +3,7 @@ import mongoose, { HydratedDocument } from 'mongoose';
 import { Brand } from 'src/brand/chemas/brand.schema';
 import { Category } from 'src/category/chemas/category.schema';
 import { PerfumeCollection } from 'src/perfume-collections/schemas/PerfumeCollection.schema';
+import { IPrices } from 'src/types/common';
 
 @Schema({
   collection: 'perfumes',
@@ -17,8 +18,8 @@ export class Perfume {
   @Prop({ required: true })
   imageUrl: string;
 
-  @Prop({ required: true })
-  price: number;
+  @Prop({ required: true, type: mongoose.Types.Array<mongoose.Types.Map<unknown>> })
+  prices: IPrices[];
 
   @Prop({
     type: [{ type: mongoose.Types.ObjectId, ref: Category.name }],
